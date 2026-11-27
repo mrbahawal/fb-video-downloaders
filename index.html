@@ -2,39 +2,40 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Video Downloader</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Media Downloader - Free Online Tools</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#222}
-header{background:#fff;padding:18px;text-align:center;border-bottom:1px solid #ddd}
-.logo{font-size:25px;font-weight:bold;color:#20a34a}
-nav{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;padding:15px}
-nav a{color:#333;text-decoration:none;font-size:14px}
-main{max-width:850px;margin:35px auto;padding:20px}
-.hero{text-align:center;background:#fff;padding:35px 20px;border-radius:16px;box-shadow:0 4px 20px #0001}
-h1{font-size:27px}
-.hero p{color:#666}
-.inputbox{display:flex;gap:8px;margin-top:25px;flex-wrap:wrap}
-input{flex:1;min-width:180px;padding:15px;border:2px solid #20a34a;border-radius:7px;font-size:16px}
-button{background:#20a34a;color:white;border:0;border-radius:7px;padding:15px 22px;font-weight:bold;cursor:pointer}
-button:hover{background:#17843b}
-.platforms{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:25px}
-.platform{background:#fff;padding:18px 8px;border-radius:10px;text-align:center;border:1px solid #eee;font-weight:bold}
-.platform span{display:block;font-size:25px;margin-bottom:8px}
-.section{background:white;margin-top:25px;padding:25px;border-radius:12px;text-align:center}
+body{margin:0;font-family:Arial,sans-serif;background:#f2f6f8;color:#222}
+header{background:#fff;padding:22px;text-align:center;border-bottom:1px solid #ddd}
+.logo{font-size:27px;font-weight:bold;color:#159447}
+nav{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;padding:18px}
+nav a{text-decoration:none;color:#333}
+main{max-width:900px;margin:auto;padding:20px}
+.card{background:#fff;padding:30px;border-radius:16px;margin:20px 0;box-shadow:0 4px 15px #0001}
+.hero{text-align:center;padding:38px 22px}
+h1{font-size:30px}
+.input{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
+input,select{padding:14px;border:1px solid #ccc;border-radius:8px;font-size:16px}
+#url{flex:1;min-width:200px}
+button{background:#159447;color:white;border:0;padding:14px 20px;border-radius:8px;font-weight:bold;cursor:pointer}
+button:hover{background:#107536}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.platform{border:1px solid #ddd;background:#fff;border-radius:10px;padding:18px;text-align:center;cursor:pointer}
+.platform:hover,.platform.active{border:2px solid #159447;background:#eefaf2}
+.icon{font-size:27px;display:block;margin-bottom:8px}
 .tools{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.tool{padding:16px;background:#f3f7f5;border-radius:8px}
-footer{text-align:center;padding:30px;color:#777;font-size:13px}
-@media(max-width:550px){
-.platforms{grid-template-columns:repeat(2,1fr)}
+.tool{background:#f4f8f6;padding:20px;border-radius:10px;text-align:center}
+.note{font-size:14px;color:#666;line-height:1.7}
+footer{text-align:center;padding:30px;color:#666}
+@media(max-width:600px){
+.grid{grid-template-columns:repeat(2,1fr)}
 .tools{grid-template-columns:repeat(2,1fr)}
-h1{font-size:23px}
+h1{font-size:25px}
 }
 </style>
 </head>
 <body>
-
 <header>
 <div class="logo">⬇ Media Downloader</div>
 </header>
@@ -47,69 +48,86 @@ h1{font-size:23px}
 </nav>
 
 <main>
-<div class="hero">
-<h1>Free Online Video Downloader</h1>
-<p>Paste your media link below</p>
+<section class="card hero">
+<h1>Free Online Media Downloader</h1>
+<p>Select a platform and paste your media link</p>
 
-<div class="inputbox">
-<input id="url" type="url" placeholder="Paste your video link here">
-<button onclick="downloadVideo()">Download</button>
+<div class="input">
+<input id="url" type="url" placeholder="Paste your media URL here">
+<button onclick="processLink()">Continue</button>
 </div>
+<p id="message" class="note"></p>
+</section>
 
-<p id="message"></p>
-</div>
-
-<section class="section" id="platforms">
+<section class="card" id="platforms">
 <h2>Supported Platforms</h2>
-<div class="platforms">
-<div class="platform"><span>📘</span>Facebook</div>
-<div class="platform"><span>▶️</span>YouTube</div>
-<div class="platform"><span>📷</span>Instagram</div>
-<div class="platform"><span>🎵</span>TikTok</div>
-<div class="platform"><span>📌</span>Pinterest</div>
-<div class="platform"><span>👽</span>Reddit</div>
-<div class="platform"><span>🎬</span>Vimeo</div>
-<div class="platform"><span>▶</span>Dailymotion</div>
+<div class="grid">
+<div class="platform" onclick="choose('Facebook',this)"><span class="icon">📘</span>Facebook</div>
+<div class="platform" onclick="choose('YouTube',this)"><span class="icon">▶️</span>YouTube</div>
+<div class="platform" onclick="choose('Instagram',this)"><span class="icon">📷</span>Instagram</div>
+<div class="platform" onclick="choose('TikTok',this)"><span class="icon">🎵</span>TikTok</div>
+<div class="platform" onclick="choose('Pinterest',this)"><span class="icon">📌</span>Pinterest</div>
+<div class="platform" onclick="choose('Reddit',this)"><span class="icon">👽</span>Reddit</div>
+<div class="platform" onclick="choose('Vimeo',this)"><span class="icon">🎬</span>Vimeo</div>
+<div class="platform" onclick="choose('Dailymotion',this)"><span class="icon">📺</span>Dailymotion</div>
 </div>
 </section>
 
-<section class="section" id="tools">
-<h2>Free Online Tools</h2>
+<section class="card" id="tools">
+<h2>Free Media Tools</h2>
 <div class="tools">
-<div class="tool">MP4 Converter</div>
-<div class="tool">MP3 Converter</div>
-<div class="tool">MOV to MP4</div>
-<div class="tool">MP4 to GIF</div>
-<div class="tool">WEBM Converter</div>
-<div class="tool">Video Tools</div>
+<div class="tool">MP4 Tools</div>
+<div class="tool">MP3 Tools</div>
+<div class="tool">MOV Tools</div>
+<div class="tool">GIF Tools</div>
+<div class="tool">WEBM Tools</div>
+<div class="tool">Media Guide</div>
 </div>
 </section>
 
-<section class="section" id="about">
-<h2>About Us</h2>
-<p>Simple online tools for media and content creators.
-Only download content that you own or have permission to use.</p>
+<section class="card" id="about">
+<h2>About</h2>
+<p class="note">A simple media tools website. Use media you own or are authorized to download. Platform restrictions and copyright rules apply.</p>
+</section>
+
+<section class="card">
+<h2>Frequently Asked Questions</h2>
+<p><b>Is this website free?</b><br>Our website is designed to offer free tools.</p>
+<p><b>Can I download any video?</b><br>Only use media when downloading is permitted and you have the necessary rights.</p>
+<p><b>Does the website process all platform links yet?</b><br>Platform processing integrations are not yet connected.</p>
 </section>
 </main>
 
 <footer>
-<p>Free Media Tools</p>
-<p>Privacy | Terms | Contact</p>
+Free Media Tools | Respect copyright and privacy
 </footer>
 
 <script>
-function downloadVideo(){
-let url=document.getElementById("url").value.trim();
-let msg=document.getElementById("message");
-if(!url){
-msg.innerText="Please paste a video link first.";
+let selected="";
+
+function choose(name,el){
+selected=name;
+document.querySelectorAll(".platform").forEach(x=>x.classList.remove("active"));
+el.classList.add("active");
+document.getElementById("message").innerText=name+" selected. Paste your link above.";
+}
+
+function processLink(){
+let u=document.getElementById("url").value.trim();
+let m=document.getElementById("message");
+if(!u){
+m.innerText="Please paste a link first.";
 return;
 }
 try{
-new URL(url);
-msg.innerText="This website design is ready. Video processing will be added later for supported content.";
+new URL(u);
+if(selected){
+m.innerText=selected+" selected. Link accepted for the interface demo. Processing service is not connected yet.";
+}else{
+m.innerText="Link accepted for the interface demo. Select a platform first.";
+}
 }catch(e){
-msg.innerText="Please enter a valid link.";
+m.innerText="Please enter a valid URL.";
 }
 }
 </script>
