@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Video Downloader</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#222}
+header{background:#fff;padding:18px;text-align:center;border-bottom:1px solid #ddd}
+.logo{font-size:25px;font-weight:bold;color:#20a34a}
+nav{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;padding:15px}
+nav a{color:#333;text-decoration:none;font-size:14px}
+main{max-width:850px;margin:35px auto;padding:20px}
+.hero{text-align:center;background:#fff;padding:35px 20px;border-radius:16px;box-shadow:0 4px 20px #0001}
+h1{font-size:27px}
+.hero p{color:#666}
+.inputbox{display:flex;gap:8px;margin-top:25px;flex-wrap:wrap}
+input{flex:1;min-width:180px;padding:15px;border:2px solid #20a34a;border-radius:7px;font-size:16px}
+button{background:#20a34a;color:white;border:0;border-radius:7px;padding:15px 22px;font-weight:bold;cursor:pointer}
+button:hover{background:#17843b}
+.platforms{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:25px}
+.platform{background:#fff;padding:18px 8px;border-radius:10px;text-align:center;border:1px solid #eee;font-weight:bold}
+.platform span{display:block;font-size:25px;margin-bottom:8px}
+.section{background:white;margin-top:25px;padding:25px;border-radius:12px;text-align:center}
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tool{padding:16px;background:#f3f7f5;border-radius:8px}
+footer{text-align:center;padding:30px;color:#777;font-size:13px}
+@media(max-width:550px){
+.platforms{grid-template-columns:repeat(2,1fr)}
+.tools{grid-template-columns:repeat(2,1fr)}
+h1{font-size:23px}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">⬇ Media Downloader</div>
+</header>
+
+<nav>
+<a href="#">Home</a>
+<a href="#platforms">Platforms</a>
+<a href="#tools">Tools</a>
+<a href="#about">About</a>
+</nav>
+
+<main>
+<div class="hero">
+<h1>Free Online Video Downloader</h1>
+<p>Paste your media link below</p>
+
+<div class="inputbox">
+<input id="url" type="url" placeholder="Paste your video link here">
+<button onclick="downloadVideo()">Download</button>
+</div>
+
+<p id="message"></p>
+</div>
+
+<section class="section" id="platforms">
+<h2>Supported Platforms</h2>
+<div class="platforms">
+<div class="platform"><span>📘</span>Facebook</div>
+<div class="platform"><span>▶️</span>YouTube</div>
+<div class="platform"><span>📷</span>Instagram</div>
+<div class="platform"><span>🎵</span>TikTok</div>
+<div class="platform"><span>📌</span>Pinterest</div>
+<div class="platform"><span>👽</span>Reddit</div>
+<div class="platform"><span>🎬</span>Vimeo</div>
+<div class="platform"><span>▶</span>Dailymotion</div>
+</div>
+</section>
+
+<section class="section" id="tools">
+<h2>Free Online Tools</h2>
+<div class="tools">
+<div class="tool">MP4 Converter</div>
+<div class="tool">MP3 Converter</div>
+<div class="tool">MOV to MP4</div>
+<div class="tool">MP4 to GIF</div>
+<div class="tool">WEBM Converter</div>
+<div class="tool">Video Tools</div>
+</div>
+</section>
+
+<section class="section" id="about">
+<h2>About Us</h2>
+<p>Simple online tools for media and content creators.
+Only download content that you own or have permission to use.</p>
+</section>
+</main>
+
+<footer>
+<p>Free Media Tools</p>
+<p>Privacy | Terms | Contact</p>
+</footer>
+
+<script>
+function downloadVideo(){
+let url=document.getElementById("url").value.trim();
+let msg=document.getElementById("message");
+if(!url){
+msg.innerText="Please paste a video link first.";
+return;
+}
+try{
+new URL(url);
+msg.innerText="This website design is ready. Video processing will be added later for supported content.";
+}catch(e){
+msg.innerText="Please enter a valid link.";
+}
+}
+</script>
+</body>
+</html>
